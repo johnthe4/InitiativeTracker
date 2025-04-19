@@ -7,31 +7,33 @@ export default function Grid<GridDataType>(
 	const { columnConfiguration, data } = props;
 
 	return (
-		<table className="grid-table">
-			<thead>
-				<tr>
-					{columnConfiguration.map((column) => (
-						<th key={column.columnId} style={{ width: column.columnWidth }}>
-							{column.columnTitle}
-						</th>
-					))}
-				</tr>
-			</thead>
-			<tbody>
-				{data.map((row, rowIndex) => (
-					<tr key={rowIndex}>
+		<div>
+			<table className="grid-table">
+				<thead>
+					<tr>
 						{columnConfiguration.map((column) => (
-							<td key={column.columnId}>
-								{/* Dynamically render cell content */}
-								{column.customCellRenderer
-									? column.customCellRenderer(row, column.columnId)
-									: (row as any)[column.columnId]}
-							</td>
+							<th key={column.columnId} style={{ width: column.columnWidth }}>
+								{column.columnTitle}
+							</th>
 						))}
 					</tr>
-				))}
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					{data.map((row, rowIndex) => (
+						<tr key={rowIndex}>
+							{columnConfiguration.map((column) => (
+								<td key={column.columnId}>
+									{/* Dynamically render cell content */}
+									{column.customCellRenderer
+										? column.customCellRenderer(row, column.columnId)
+										: String(row[column.columnId as keyof GridDataType])}
+								</td>
+							))}
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
 	);
 }
 
