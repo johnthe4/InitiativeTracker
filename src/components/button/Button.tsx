@@ -1,3 +1,5 @@
+import "./Button.css";
+
 export default function Button(props: Readonly<ButtonProps>) {
 	return (
 		<button className="buttonClass" onClick={props.onClick}>
