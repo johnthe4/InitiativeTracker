@@ -23,7 +23,9 @@ export default function Grid<GridDataType>(
 						{columnConfiguration.map((column) => (
 							<td key={column.columnId}>
 								{/* Dynamically render cell content */}
-								{(row as any)[column.columnId]}
+								{column.customCellRenderer
+									? column.customCellRenderer(row, column.columnId)
+									: (row as any)[column.columnId]}
 							</td>
 						))}
 					</tr>
@@ -45,10 +47,7 @@ export type ColumnConfigurationItem<GridDataType> = {
 	columnTitle: string;
 	columnWidth: number;
 	// Define a custom cell to be rendered in place of the data value
-	customCellRenderer?: (
-		data: GridDataType,
-		columnId: keyof GridDataType
-	) => ReactNode;
+	customCellRenderer?: (data?: GridDataType, columnId?: string) => ReactNode;
 };
 
 export type ColumnConfiguration<GridDataType> =

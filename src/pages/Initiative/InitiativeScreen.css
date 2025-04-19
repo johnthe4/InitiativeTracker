@@ -3,3 +3,9 @@
 	justify-content: space-evenly;
 	margin-top: 2rem;
 }
+
+.gridWrapper {
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 2rem;
+	margin-top: 2rem;
+}
