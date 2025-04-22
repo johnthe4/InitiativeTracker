@@ -1,39 +1,41 @@
-import { ColumnConfigurationItem } from "../../../components/grid/Grid";
+import { ColumnConfigurationItem } from "../../../components/grid/GridTypes";
 import Kill from "./Kill";
 
 export type PlayerType = {
-	id: string;
-	order: number;
-	name: string;
-	initiative: number;
-	ac: number;
+	order?: number;
+	name?: string;
+	initiative?: number;
+	ac?: number;
 	// hp: number;
 	// speed: number;
 	// condition: string[];
 	// notes: string[];
 };
 
-export const playerColumnConfiguration: ColumnConfigurationItem<PlayerType>[] =
+export const viewPlayerColumnConfiguration: ColumnConfigurationItem<PlayerType>[] =
 	[
 		{
 			columnId: "order",
 			columnTitle: "Order",
-			columnWidth: 200,
+			columnWidth: 100,
 		},
 		{
 			columnId: "name",
 			columnTitle: "Name",
 			columnWidth: 200,
+			columnType: "text",
 		},
 		{
 			columnId: "initiative",
 			columnTitle: "Initiative",
 			columnWidth: 200,
+			columnType: "number",
 		},
 		{
 			columnId: "ac",
 			columnTitle: "AC",
 			columnWidth: 200,
+			columnType: "number",
 		},
 		{
 			columnId: "kill",
@@ -42,5 +44,32 @@ export const playerColumnConfiguration: ColumnConfigurationItem<PlayerType>[] =
 			customCellRenderer: () => {
 				return <Kill />;
 			},
+		},
+	];
+
+	export const editPlayerColumnConfiguration: ColumnConfigurationItem<PlayerType>[] =
+	[
+		{
+			columnId: "order",
+			columnTitle: "Order",
+			columnWidth: 100,
+		},
+		{
+			columnId: "name",
+			columnTitle: "Name",
+			columnWidth: 200,
+			columnType: "text",
+		},
+		{
+			columnId: "initiative",
+			columnTitle: "Initiative",
+			columnWidth: 200,
+			columnType: "number",
+		},
+		{
+			columnId: "ac",
+			columnTitle: "AC",
+			columnWidth: 200,
+			columnType: "number",
 		},
 	];
